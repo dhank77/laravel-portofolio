@@ -61,7 +61,7 @@
                 </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#post">Post</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('blogs.create') }}">Post New Projects</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

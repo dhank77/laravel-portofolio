@@ -32,3 +32,5 @@ Route::post('logout', [
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/blogs', 'BlogController@create')->name('blogs.create');
+Route::post('/blogs', 'BlogController@store');

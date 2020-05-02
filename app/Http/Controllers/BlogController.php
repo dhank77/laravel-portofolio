@@ -2,39 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Blog;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct() {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
-        //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('blogs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'title' => 'required',
+            'deskripsi' => 'required',
+            'images' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048'
+        ]);
+
+        if($request->file('images')){
+            $path = $request->file('image');
+            $name = $request->getClientOriginalName();
+
+            $p = $request->file('images')->storeAs('uploads', $name, 'public');
+        }
+
+        $blog = new Blog;
+        $blog->title = $request->title;
+        $blog->deskripsi = $request->deskripsi;
+        $blog->slug = Str::slug($request->title);
+        $blog->image = $name;
+        $blog->path = $p;
+        $blog->save();
+
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
