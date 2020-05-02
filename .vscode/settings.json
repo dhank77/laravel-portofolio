@@ -1,0 +1,7 @@
+{
+    "files.autoSave": "onWindowChange",
+    "editor.lineHeight": 20,
+    "editor.renderLineHighlight": "all",
+    "editor.fontFamily": "'Fira Code'",
+    "editor.fontLigatures": true
+}
