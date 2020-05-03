@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Auth::routes();
 Route::get('login', [
@@ -31,6 +28,6 @@ Route::post('logout', [
     'uses' => 'Auth\LoginController@logout'
 ]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/blogs', 'BlogController@create')->name('blogs.create');
 Route::post('/blogs', 'BlogController@store');

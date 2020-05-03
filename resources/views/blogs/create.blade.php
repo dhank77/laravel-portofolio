@@ -10,13 +10,13 @@
                         <div class="card-header bg-primary text-white">Create Project</div>
 
                         <div class="card-body">
-                            @if (session('status'))
+                            @if (session('success'))
                             <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
+                                {{ session('success') }}
                             </div>
                             @endif
 
-                            <form action="{{ route('blogs.create') }}" method="POST">
+                            <form action="{{ route('blogs.create') }}" method="POST" enctype="multipart/form-data">
                                 {{-- @method('POST') --}}
                                 @csrf
                                 <div class="form-group">
@@ -31,7 +31,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="images">Gambar</label>
-                                    <input type="file" class="form-control-file" id="images" name="images">
+                                    <input type="file" class="form-control-file @error('images') is-invalid @enderror" id="images" name="images">
+                                    <span class="invalid-feedback">Wajib diisi</span>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>

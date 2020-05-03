@@ -31,6 +31,32 @@
 
     <hr class="m-0">
 
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="portofolio">
+        <div class="w-100">
+            <h2 class="mb-5">Portofolio</h2>
+            <div class="row">
+                @foreach($blogs as $blog)
+                <div class="col-lg-4 mt-4">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ asset($blog->image) }}" height="150px">
+                        <div class="card-body" style="height:220px">
+                            <h5 class="card-title">{{ $blog->title }}</h5>
+                            <p class="card-text">{{ \Illuminate\Support\Str::limit($blog->deskripsi, 50, '...') }}</p>
+                            <a href="#" class="btn btn-primary">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <div class="text-center mt-4">
+                <a href="" class="btn btn-primary">Selengkapnya</a>
+            </div>
+        </div>
+
+    </section>
+
+    <hr class="m-0">
+
     <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
         <div class="w-100">
             <h2 class="mb-5">Experience</h2>
@@ -45,7 +71,7 @@
                 <div class="resume-date text-md-right">
                 </div>
             </div>
-            
+
             <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="resume-content">
                     <h3 class="mb-0">Freelance Mobile Developer</h3>

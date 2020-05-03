@@ -24,18 +24,15 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-
+        // dd($request->file());
         $request->validate([
             'title' => 'required',
             'deskripsi' => 'required',
-            'images' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048'
+            'images' => 'required|image|mimes:jpg,jpeg,png,gif,svg'
         ]);
 
         if($request->file('images')){
-            $path = $request->file('image');
-            $name = $request->getClientOriginalName();
-
-            $p = $request->file('images')->storeAs('uploads', $name, 'public');
+            $name = $request->file('images')->store('uploads');
         }
 
         $blog = new Blog;
@@ -43,7 +40,6 @@ class BlogController extends Controller
         $blog->deskripsi = $request->deskripsi;
         $blog->slug = Str::slug($request->title);
         $blog->image = $name;
-        $blog->path = $p;
         $blog->save();
 
         return redirect()->back()->with('success', 'Data berhasil ditambahkan');
