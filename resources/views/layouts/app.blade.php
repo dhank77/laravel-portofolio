@@ -38,29 +38,33 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('/') }}#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#portofolio">Portfolio</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('/') }}#portofolio">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('/') }}#experience">Experience</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('/') }}#education">Education</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('/') }}#skills">Skills</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('/') }}#interests">Interests</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#awards">Awards</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('/') }}#awards">Awards</a>
                 </li>
                 @if(auth()->user())
+                <hr>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ route('blogs.create') }}">Post New Projects</a>
+                        <a class="nav-link js-scroll-trigger" href="{{ route('dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{{ route('blogs.create') }}">Post Projects</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -87,6 +91,8 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/resume.min.js"></script>
+
+    @yield('js')
 
 </body>
 

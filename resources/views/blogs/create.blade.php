@@ -31,7 +31,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="images">Gambar</label>
-                                    <input type="file" class="form-control-file @error('images') is-invalid @enderror" id="images" name="images">
+                                    <div class="col-lg-12 my-3">
+                                        <img src="{{ asset('img/img.png') }}" alt="priview" id="image-preview" width="300px">
+                                    </div>
+                                    <input type="file" class="form-control-file @error('images') is-invalid @enderror" id="images" name="images" onchange="previewImage()">
                                     <span class="invalid-feedback">Wajib diisi</span>
                                 </div>
 
@@ -45,4 +48,18 @@
         </div>
     </section>
 </div>
+@endsection
+
+@section('js')
+<script>
+    function previewImage() {
+        document.getElementById("image-preview").style.display = "block";
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("images").files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            document.getElementById("image-preview").src = oFREvent.target.result;
+        };
+    };
+</script>
 @endsection
